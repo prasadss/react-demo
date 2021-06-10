@@ -37,7 +37,7 @@ const App = () => {
                     <Checkbox
                       checked={x.selected}
                       onChange={() => handleChange(i)}
-                      name="gilad"
+                      name={x.label}
                     />
                   }
                   label={x.label}

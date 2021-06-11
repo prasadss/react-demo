@@ -6,7 +6,19 @@ import FormControl from "@material-ui/core/FormControl";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
-const itemList = [{ label: "Beetroot", selected: false },{ label: "Celery", selected: false },{ label: "Masala Chickpeas", selected: false },{ label: "Pasta Fusilli", selected: false },{ label: "Potato", selected: false },{ label: "Pumpkin", selected: false },{ label: "Soba", selected: false },{ label: "Sweet Potaotes", selected: false },{ label: "Black Olive", selected: false },{ label: "Jalapeno", selected: false },{ label: "Apple", selected: false }];
+const itemList = [
+  { label: "Beetroot", selected: false },
+  { label: "Celery", selected: false },
+  { label: "Masala Chickpeas", selected: false },
+  { label: "Pasta Fusilli", selected: false },
+  { label: "Potato", selected: false },
+  { label: "Pumpkin", selected: false },
+  { label: "Soba", selected: false },
+  { label: "Sweet Potaotes", selected: false },
+  { label: "Black Olive", selected: false },
+  { label: "Jalapeno", selected: false },
+  { label: "Apple", selected: false },
+];
 const App = () => {
   const max = new Date(2099, 2, 10, 12, 30);
   const min = new Date();
@@ -17,17 +29,27 @@ const App = () => {
     list[i].selected = !list[i].selected;
     setList([...list]);
   }
-  const minimumItems = 6
-  const error = list.filter((x) => x.selected).length > minimumItems;
+  const styles = {
+      done: {
+        color: "green",
+      },
+      selection:{
+        color: "red",
+      }
+    };
+  const minimumItems = 6;
+  const showDone = list.filter((x) => x.selected).length >= minimumItems;
   return (
     <div>
-    <div>
-      <DateTimePicker min={min} max={max} defaultValue={new Date()} />
+      <div>
+        <DateTimePicker min={min} max={max} defaultValue={new Date()} />
       </div>
       <div>
-      <br/>
-        <FormControl error={error} required component="fieldset">
-          <FormLabel component="legend">(Please choose any {minimumItems})</FormLabel>
+        <br />
+        <FormControl required component="fieldset">
+          {list.filter((x) => x.selected).length}
+          {showDone ? <h4 style={styles.done}>Done</h4> : <h4 style={styles.selection}>(Please choose any {minimumItems})</h4>}
+
           <FormGroup>
             {list.map((x, i) => {
               return (

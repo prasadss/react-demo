@@ -47,9 +47,7 @@ const App = () => {
       <div>
         <br />
         <FormControl required component="fieldset">
-          {list.filter((x) => x.selected).length}
           {showDone ? <h4 style={styles.done}>Done</h4> : <h4 style={styles.selection}>(Please choose any {minimumItems})</h4>}
-
           <FormGroup>
             {list.map((x, i) => {
               return (
